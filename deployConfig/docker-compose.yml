@@ -9,7 +9,7 @@ services:
      depends_on:
      - mysql
    mysql:
-     image: devopstrainer/java-mvn-privaterepos:mysql
+     image: santhoshmula/devopstrainer-myrepo:mysql
      volumes:
      - db_data:/var/lib/mysql
      environment:
