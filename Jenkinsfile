@@ -12,7 +12,7 @@ pipeline{
             agent any
             steps{
                 script{
-                sshagent(['slave2']) {
+                sshagent(['slave1']) {
                 withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
                 echo "Building the php image"
                 sh "scp -o StrictHostKeyChecking=no -r BuildConfig ${BUILD_SERVER_IP}:/home/ec2-user"
@@ -29,7 +29,7 @@ stage('RUN PHP_DB with Dockercompose'){
             agent any
             steps{
                 script{
-                sshagent(['slave2']) {
+                sshagent(['slave1']) {
                 withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
                 echo "Deploy PHP and Sql containers"
                 sh "scp -o StrictHostKeyChecking=no -r deployConfig ${DEPLOY_SERVER_IP}:/home/ec2-user"
