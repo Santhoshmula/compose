@@ -35,6 +35,7 @@ stage('RUN PHP_DB with Dockercompose'){
                 sh "scp -o StrictHostKeyChecking=no -r deployConfig ${DEPLOY_SERVER_IP}:/home/ec2-user"
                 sh "ssh -o StrictHostKeyChecking=no ${DEPLOY_SERVER_IP} 'bash ~/deployConfig/docker-script.sh'"
                 sh "ssh ${DEPLOY_SERVER_IP} sudo docker login -u $USERNAME -p $PASSWORD"
+                // for below line we calling docker-compose-script.sh and passing the image name ..
                 sh "ssh ${DEPLOY_SERVER_IP} bash /home/ec2-user/deployConfig/docker-compose-script.sh ${IMAGE_NAME}"
                 }
             }
